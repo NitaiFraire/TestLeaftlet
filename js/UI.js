@@ -49,12 +49,17 @@ class UI {
             // destructuring
             const { latitude, longitude, calle, regular, premium } = dato;
 
+            // crear popup
+            const opcionesPoup = L.popup().setContent(`<p>Calle: ${calle}</p>
+                                                        <p><b>Regular: $</b>${regular}</p>                                                
+                                                        <p><b>Premium: $</b>${premium}</p>`);
+
             // agregar pin 
             const marker = new L.marker([
 
                 parseFloat(latitude),
                 parseFloat(longitude)
-            ]);
+            ]).bindPopup(opcionesPoup);
 
             this.markers.addLayer(marker);
         });
