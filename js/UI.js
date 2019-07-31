@@ -1,8 +1,11 @@
 class UI {
     constructor() {
 
-         // Iniciar el mapa
-         this.mapa = this.inicializarMapa();
+        // instanciar la api
+        this.api = new API();
+
+        // Iniciar el mapa
+        this.mapa = this.inicializarMapa();
 
     }
 
@@ -17,5 +20,23 @@ class UI {
              }).addTo(map);
          return map;
 
+    }
+
+    mostrarEstablecimientos(){
+
+        this.api.obtenerDatos()
+                .then(datos => {
+
+                    console.log(datos);
+                    const resultado = datos.respuestaJson.results;
+
+                    // ejecutar la funcion para mostrar los pines
+                    this.mostrarPines(resultado);
+                });
+    }
+
+    mostrarPines(datos){
+
+        console.log(datos);
     }
 }
