@@ -66,4 +66,14 @@ class UI {
 
         this.markers.addTo(this.mapa);
     }
+
+    // buscador 
+    obtenerSugerencias(busqueda){
+
+        this.api.obtenerDatos()
+                .then(datos => {
+                    
+                    const resultados = datos.respuestaJson.results;
+                });
+    }
 }
