@@ -30,7 +30,6 @@ class UI {
         this.api.obtenerDatos()
                 .then(datos => {
 
-                    console.log(datos);
                     const resultado = datos.respuestaJson.results;
 
                     // ejecutar la funcion para mostrar los pines
@@ -74,6 +73,21 @@ class UI {
                 .then(datos => {
                     
                     const resultados = datos.respuestaJson.results;
+
+                    // enviar json y la búsqueda para el filtrado
+                    this.filtrarSugerencias(resultados, busqueda);
                 });
+    }
+
+
+    // filtra sugerencias
+    filtrarSugerencias(resultado, busqueda){
+
+        // filtrar 
+        const filtro = resultado.filter(filtro => filtro.calle.indexOf(busqueda) !== -1);
+        console.log(filtro);
+
+        // mostrar pines
+        this.mostrarPines(filtro);
     }
 }
